@@ -10,6 +10,11 @@ fi
 if hash hardlink 2>/dev/null; then
 	hardlink -t /usr/share/doc
 fi
+
+sed -i.bak 's/\(GRUB_CMDLINE_LINUX_DEFAULT\)="quiet"/\1="rootwait"/' /etc/default/grub
+
+printf '\n\nGRUB_DISABLE_LINUX_PARTUUID=false\n' >> /etc/default/grub
+
 update-initramfs -k all -c
 grub-install --efi-directory=/boot --force-extra-removable --no-nvram --no-uefi-secure-boot
 GRUB_DISABLE_OS_PROBER=true update-grub
