@@ -1,0 +1,16 @@
+#cloud-config
+
+# Set the hostname
+hostname: cloudpotato
+
+growpart:
+  mode: auto
+  devices: ["/"]
+  ignore_growroot_disabled: false
+
+# Disable pwauth for ssh
+ssh_pwauth: false
+
+# Don't create any users
+users: []
+

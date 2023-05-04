@@ -3,6 +3,9 @@
 IMG_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.img"
 INFO_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.info"
 
+install -m 664 files/user-data           "${ROOTFS_DIR}/boot/"
+install -m 664 files/meta-data           "${ROOTFS_DIR}/boot/"
+
 on_chroot << EOF
 if [ -x /etc/init.d/fake-hwclock ]; then
 	/etc/init.d/fake-hwclock stop
@@ -11,7 +14,7 @@ if hash hardlink 2>/dev/null; then
 	hardlink -t /usr/share/doc
 fi
 
-sed -i.bak 's/\(GRUB_CMDLINE_LINUX_DEFAULT\)="quiet"/\1="rootwait"/' /etc/default/grub
+sed -i.bak 's/\(GRUB_CMDLINE_LINUX_DEFAULT\)="quiet"/\1="rootwait \\\\"ds=nocloud;s=\/boot\/\\\\""/' /etc/default/grub
 
 printf '\n\nGRUB_DISABLE_LINUX_PARTUUID=false\n' >> /etc/default/grub
 
