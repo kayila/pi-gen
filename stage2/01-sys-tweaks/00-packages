@@ -3,7 +3,6 @@ console-setup keyboard-configuration debconf-utils parted
 cloud-init
 bash-completion
 python3
-avahi-daemon
 hardlink ca-certificates curl
 fake-hwclock nfs-common usbutils
 dosfstools

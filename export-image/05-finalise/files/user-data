@@ -11,6 +11,12 @@ growpart:
 # Disable pwauth for ssh
 ssh_pwauth: false
 
-# Don't create any users
-users: []
+users:
+  - name: tcsansible
+    gecos: Ansible User
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_password: true
+    ssh_authorized_keys:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMNAGmhXOfZq7jKjZ8sE911y1VrudAU3SLuPMFfY/C9B TCS Maintenance SSH Key"
 
