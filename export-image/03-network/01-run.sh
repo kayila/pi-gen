@@ -8,4 +8,6 @@ ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 systemctl disable networking
 systemctl enable systemd-networkd systemd-resolved
 
+sudo sed -i.bak 's/#\?DNSSEC=.*$/DNSSEC=no/' /etc/systemd/resolved.conf
+
 EOF
