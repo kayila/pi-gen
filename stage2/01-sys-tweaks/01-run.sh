@@ -32,7 +32,10 @@ if [ "${ENABLE_SSH}" == "1" ]; then
 else
 	systemctl disable ssh
 fi
-systemctl enable regenerate_ssh_host_keys
+# If key regen is needed, look at the following links:
+# - https://github.com/RPi-Distro/raspberrypi-sys-mods/blob/master/usr/lib/raspberrypi-sys-mods/regenerate_ssh_host_keys
+# - https://wiki.debian.org/SSH#Regenerating_host_keys
+#systemctl enable regenerate_ssh_host_keys
 EOF
 
 if [ "${USE_QEMU}" = "1" ]; then

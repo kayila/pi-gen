@@ -7,11 +7,11 @@ hardlink ca-certificates curl
 fake-hwclock nfs-common usbutils
 dosfstools
 dphys-swapfile
-raspberrypi-sys-mods
+#raspberrypi-sys-mods
 apt-listchanges
 usb-modeswitch
-libpam-chksshpwd
-rpi-update
+#libpam-chksshpwd
+#rpi-update
 libmtp-runtime
 rsync
 htop
@@ -21,8 +21,8 @@ rng-tools
 ethtool
 ntfs-3g
 pciutils
-rpi-eeprom
-raspinfo
+#rpi-eeprom
+#raspinfo
 udisks2
 unzip zip
 file

@@ -1,3 +1,4 @@
 #raspberrypi-net-mods
 #dhcpcd5
 net-tools
+systemd-resolved
