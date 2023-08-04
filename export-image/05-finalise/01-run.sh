@@ -6,6 +6,12 @@ INFO_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.info"
 install -m 664 files/user-data           "${ROOTFS_DIR}/boot/"
 install -m 664 files/meta-data           "${ROOTFS_DIR}/boot/"
 
+sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/boot/meta-data"
+sed -i "s/BUILD_DATE/$(date)/g" "${ROOTFS_DIR}/boot/meta-data"
+sed -i "s/FILENAME/$(basename ${IMG_FILE})/g" "${ROOTFS_DIR}/boot/meta-data"
+sed -i "s/GIT_VERSION/$(git describe --always --dirty)/g" "${ROOTFS_DIR}/boot/meta-data"
+
+
 on_chroot << EOF
 if [ -x /etc/init.d/fake-hwclock ]; then
 	/etc/init.d/fake-hwclock stop
