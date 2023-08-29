@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-install -m 644 files/04-ethernet.network     "${ROOTFS_DIR}/etc/systemd/network/04-ethernet.network"
+install -m 644 files/04-eth0.network     "${ROOTFS_DIR}/etc/systemd/network/04-eth0.network"
 
 on_chroot << EOF
 
