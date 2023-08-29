@@ -18,5 +18,5 @@ users:
     shell: /bin/bash
     lock_password: true
     ssh_authorized_keys:
-      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMNAGmhXOfZq7jKjZ8sE911y1VrudAU3SLuPMFfY/C9B TCS Maintenance SSH Key"
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINQeP2BCYpCFj8gyqMcZmx/bGBQ6fOegRlfAA01cWtWw TCS Maintenance Key 2023-08" 
 
