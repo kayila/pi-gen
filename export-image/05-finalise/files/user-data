@@ -3,6 +3,11 @@
 # Set the hostname
 hostname: cloudpotato
 
+random_seed:
+  file: /dev/urandom
+  command: ["pollinate", "--server", "https://entropy.ubuntu.com"]
+  command_required: true
+
 growpart:
   mode: auto
   devices: ["/"]
