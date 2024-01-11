@@ -35,7 +35,7 @@ if [ "${NO_PRERUN_QCOW2}" = "0" ]; then
 
 	echo "Creating loop device..."
 	cnt=0
-	until LOOP_DEV="$(losetup --show --find --partscan "$IMG_FILE")"; do
+	until ensure_next_loopdev && LOOP_DEV="$(losetup --show --find --partscan "$IMG_FILE")"; do
 		if [ $cnt -lt 5 ]; then
 			cnt=$((cnt + 1))
 			echo "Error in losetup.  Retrying..."
@@ -55,7 +55,7 @@ if [ "${NO_PRERUN_QCOW2}" = "0" ]; then
 		ROOT_FEATURES="^$FEATURE,$ROOT_FEATURES"
 	fi
 	done
-	mkdosfs -n boot -F 32 -s 4 -v "$BOOT_DEV" > /dev/null
+	mkdosfs -n bootfs -F 32 -s 4 -v "$BOOT_DEV" > /dev/null
 	mkfs.ext4 -L rootfs -O "$ROOT_FEATURES" "$ROOT_DEV" > /dev/null
 
 	mount -v "$ROOT_DEV" "${ROOTFS_DIR}" -t ext4

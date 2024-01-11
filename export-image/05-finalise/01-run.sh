@@ -29,7 +29,7 @@ grub-install --efi-directory=/boot --force-extra-removable --no-nvram --no-uefi-
 GRUB_DISABLE_OS_PROBER=true update-grub
 EOF
 
-write_libre_bootloader(){
+if [ ! -z "${BOARD}" ]; then
 	case "${BOARD%%-*}" in
 		aml)
 			boot_sector=1
@@ -49,7 +49,7 @@ write_libre_bootloader(){
 	wget -O "$boot_loader_file" "http://boot.libre.computer/ci/${BOARD}"
 	dd if="$boot_loader_file" of="${IMG_FILE}" bs=512 seek=$boot_sector conv=notrunc
 	rm "$boot_loader_file"
-}
+fi
 
 if [ -d "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config" ]; then
 	chmod 700 "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config"
@@ -129,11 +129,6 @@ if [ "${USE_QCOW2}" = "0" ] && [ "${NO_PRERUN_QCOW2}" = "0" ]; then
 	zerofree "${ROOT_DEV}"
 
 	unmount_image "${IMG_FILE}"
-
-	if [ ! -z "${BOARD}" ]; then
-		write_libre_bootloader
-	fi
-
 else
 	if [! -z "${BOARD}" ]; then
 		printf "WARNING: write_libre_bootloader might not work, and will not be run. Needs testing!\n"

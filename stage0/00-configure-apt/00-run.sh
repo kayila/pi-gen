@@ -13,8 +13,11 @@ else
 	rm -f "${ROOTFS_DIR}/etc/apt/apt.conf.d/51cache"
 fi
 
-cat files/raspberrypi.gpg.key | gpg --dearmor > "${ROOTFS_DIR}/etc/apt/trusted.gpg.d/raspberrypi-archive-stable.gpg"
+cat files/raspberrypi.gpg.key | gpg --dearmor > "${STAGE_WORK_DIR}/raspberrypi-archive-stable.gpg"
+install -m 644 "${STAGE_WORK_DIR}/raspberrypi-archive-stable.gpg" "${ROOTFS_DIR}/etc/apt/trusted.gpg.d/"
+
 cat files/libre-computer-deb.gpg > "${ROOTFS_DIR}/etc/apt/trusted.gpg.d/libre-computer-deb.gpg"
+
 on_chroot << EOF
 dpkg --add-architecture armhf
 apt-get update
