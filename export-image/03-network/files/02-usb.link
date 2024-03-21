@@ -1,0 +1,7 @@
+[Match]
+Type=ether
+Property=ID_BUS=usb
+[Link]
+Description="USB Ethernet interface"
+Name=usbnet0
+MACAddressPolicy=persistent

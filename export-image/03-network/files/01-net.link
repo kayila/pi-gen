@@ -1,0 +1,7 @@
+[Match]
+Path=*.ethernet
+Type=ether
+[Link]
+Description="Onboard ethernet"
+Name=net0
+MACAddressPolicy=persistent

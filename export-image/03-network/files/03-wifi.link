@@ -1,0 +1,7 @@
+[Match]
+Type=wlan
+Property=ID_BUS=usb
+[Link]
+Description="USB Wifi"
+Name=wifi0
+MACAddressPolicy=persistent
