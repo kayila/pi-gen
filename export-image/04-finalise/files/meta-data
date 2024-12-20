@@ -1,0 +1,6 @@
+instance-id: iid-local01
+distro: Raspian
+distro_release: RELEASE
+build_date: BUILD_DATE
+git_version: GIT_VERSION
+filename: FILENAME

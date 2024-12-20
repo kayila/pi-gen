@@ -3,6 +3,16 @@
 IMG_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.img"
 INFO_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.info"
 
+# Store build information and create cloudinit config
+install -m 664 files/user-data		"${ROOTFS_DIR}/boot/"
+install -m 664 files/meta-data		"${ROOTFS_DIR}/boot/"
+sed -i \
+	-e "s/RELEASE/${RELEASE}/g" \
+	-e "s/BUILD_DATE/$(date)/g" \
+	-e "s/FILENAME/$(basename ${IMG_FILE})/g" \
+	-e "s/GIT_VERSION/$(git describe --always --dirty)/g" \
+	${ROOTFS_DIR}/boot/meta-data
+
 on_chroot << EOF
 if [ -x /etc/init.d/fake-hwclock ]; then
 	/etc/init.d/fake-hwclock stop

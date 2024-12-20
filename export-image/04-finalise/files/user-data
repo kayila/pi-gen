@@ -1,0 +1,27 @@
+#cloud-config
+
+# Set the hostname
+hostname: cloudpotato
+
+random_seed:
+  file: /dev/urandom
+  command: ["pollinate", "--server", "https://entropy.ubuntu.com"]
+  command_required: true
+
+growpart:
+  mode: auto
+  devices: ["/"]
+  ignore_growroot_disabled: false
+
+# Disable pwauth for ssh
+ssh_pwauth: false
+
+users:
+  - name: tcsansible
+    gecos: Ansible User
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_password: true
+    ssh_authorized_keys:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINQeP2BCYpCFj8gyqMcZmx/bGBQ6fOegRlfAA01cWtWw TCS Maintenance Key 2023-08" 
+

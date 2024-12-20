@@ -31,3 +31,4 @@ ntfs-3g
 pciutils
 rpi-eeprom
 raspinfo
+cloud-init
